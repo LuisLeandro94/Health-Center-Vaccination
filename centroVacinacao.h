@@ -1,6 +1,15 @@
+#define MORADA 20
+#define UTENTE 3000
+#define VACINA 200
+#define NOME 100
+#define CENTROS 2000
+
 typedef struct sCentroVacinacao
 {
-    int codigoUnico[8];
-    char nomeCentro[30];
-    char cidade[20];
-} sCentroVacinacao;
+    int codigoCentro;
+    char nomeCentro[NOME];
+    char morada[MORADA];
+    int centroID;
+} CentroVacinacao;
+
+CentroVacinacao criarCentro(int centroID);

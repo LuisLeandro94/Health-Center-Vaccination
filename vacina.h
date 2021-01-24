@@ -1,7 +1,12 @@
+#define DESIGNACAO 25
+
 typedef struct sVacina
 {
-    int codigo[8];
-    char designacao[20];
-    short numeroDoses;
-    short esperaEntreDoses;
+    int codigoVacina;
+    char designacaoVacina[DESIGNACAO];
+    int numDoses;
+    int mesesEntreDoses;
+    int vacinaID;
 } Vacina;
+
+Vacina criarVacina(int vacinID);
