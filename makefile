@@ -4,6 +4,9 @@ all: listaCentros.o listaUtentes.o listaVacinas.o utente.o centroVacinacao.o vac
 listaCentros.o: centroVacinacao.o listaCentros.c
 	gcc -g -o listaCentros.o centroVacinacao.o listaCentros.c -c 
 
+listaVacinas.o: vacina.o listaVacinas.c
+	gcc -g -o listaVacinas.o vacina.o listaVacinas.c -c
+
 centroVacinacao.o: centroVacinacao.c
 	gcc -g -o centroVacinacao.o centroVacinacao.c -c
 
