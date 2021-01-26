@@ -14,7 +14,7 @@ Utente criarUtente()
         ;
     fgets(u.nomeUtente, NOME, stdin);
     u.nomeUtente[strlen(u.nomeUtente) - 1] = '\0';
-    printf("Número do Utente: ");
+    printf("Numero do Utente: ");
     fgets(temp, sizeof(temp), stdin);
     sscanf(temp, "%d", &u.numeroUtente);
     printf("Idade do Utente: ");

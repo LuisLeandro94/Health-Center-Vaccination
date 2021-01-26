@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <locale.h>
 #include "listaUtentes.h"
 #include "listaVacinas.h"
 #include "listaCentros.h"
@@ -65,7 +64,7 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
     printf("#                                      #\n");
     printf("########################################\n");
     printf("#                                      #\n");
-    printf("#\t 1 - CENTROS DE VACINAÇÃO      #\n");
+    printf("#\t 1 - CENTROS DE VACINACAO      #\n");
     printf("#                                      #\n");
     printf("#\t 2 - UTENTES                   #\n");
     printf("#                                      #\n");
@@ -74,7 +73,7 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
     printf("#\t 0 - SAIR                      #\n");
     printf("#                                      #\n");
     printf("########################################\n");
-    printf(">\t Digite a sua opção -> ");
+    printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
     system("cls");
 
@@ -93,14 +92,13 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
         exit(0);
         break;
     default:
-        printf("Opção inválida!");
+        printf("Opcao invalida!");
         break;
     }
 }
 
 int main(int argc, char const *argv[])
 {
-    setlocale(LC_ALL, "Portuguese"); //Habilita a acentuação para o português
     //Definicao de SNS
     ListaUtentes lu;
     lu.numeroUtentes = 0;

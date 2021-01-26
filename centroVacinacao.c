@@ -9,9 +9,10 @@ CentroVacinacao criarCentro(int centroID)
     char temp[20];
 
     printf("Nome do Centro: ");
-    while(getchar()!= '\n');
+    while (getchar() != '\n')
+        ;
     fgets(c.nomeCentro, NOME, stdin);
-    printf("Código do Centro: ");
+    printf("Codigo do Centro: ");
     fgets(temp, sizeof(temp), stdin);
     sscanf(temp, "%d", &c.codigoCentro);
     printf("Morada do Centro: ");

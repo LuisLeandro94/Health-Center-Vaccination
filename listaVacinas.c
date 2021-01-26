@@ -5,7 +5,7 @@
 int listarVacinas(ListaVacinas lv)
 {
     int vacinaId;
-    for(int i = 0; i < lv.numeroVacinas; i++)
+    for (int i = 0; i < lv.numeroVacinas; i++)
     {
         printf("%d -> %s \n", lv.listaVacinas[i].vacinaID, lv.listaVacinas[i].designacaoVacina);
     }
@@ -26,7 +26,8 @@ void carregarDadosListaVacinas(ListaVacinas *lv)
     FILE *file;
     file = fopen("listaVacinas.dat", "rb");
 
-    if(file == NULL) return;
+    if (file == NULL)
+        return;
 
     fread(lv, sizeof(ListaVacinas), 1, file);
 
@@ -43,13 +44,13 @@ void gravarDadosListaVacinas(ListaVacinas lv)
 
 void getVacinaByID(int vacinaID, ListaVacinas lv)
 {
-    for(int i = 0; i < lv.numeroVacinas; i++)
+    for (int i = 0; i < lv.numeroVacinas; i++)
     {
-        if(lv.listaVacinas[i].vacinaID == vacinaID)
+        if (lv.listaVacinas[i].vacinaID == vacinaID)
         {
-            printf("Código : %d\n", lv.listaVacinas[i].codigoVacina);
-            printf("Designação : %s\n", lv.listaVacinas[i].designacaoVacina);
-            printf("Número Doses : %d\n", lv.listaVacinas[i].numDoses);
+            printf("Codigo : %d\n", lv.listaVacinas[i].codigoVacina);
+            printf("Designacao : %s\n", lv.listaVacinas[i].designacaoVacina);
+            printf("Numero Doses : %d\n", lv.listaVacinas[i].numDoses);
             printf("Tempo entre Doses : %d meses\n", lv.listaVacinas[i].mesesEntreDoses);
         }
     }
@@ -62,14 +63,21 @@ void menuVacina()
     int opcao;
 
     printf("#########################################\n");
-    printf("#------------MENU DE VACINAS------------#\n");
+    printf("#                                       #\n");
+    printf("#            MENU DE VACINAS            #\n");
+    printf("#                                       #\n");
     printf("#########################################\n");
+    printf("#                                       #\n");
     printf("#\t 1 - CRIAR VACINA               #\n");
+    printf("#                                       #\n");
     printf("#\t 2 - EDITAR VACINA              #\n");
+    printf("#                                       #\n");
     printf("#\t 3 - INATIVAR VACINA            #\n");
+    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
+    printf("#                                       #\n");
     printf("#########################################\n");
-    printf(">\t Digite a sua opção -> ");
+    printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
     system("clear");
 
@@ -87,7 +95,7 @@ void menuVacina()
     case 0:
         break;
     default:
-        printf("Opção inválida!");
+        printf("Opcao invalida!");
         break;
     }
 }
