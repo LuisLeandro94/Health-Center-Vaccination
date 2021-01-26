@@ -19,9 +19,8 @@ vacina.o: vacina.c
 	gcc -g -o vacina.o vacina.c -c
 
 clean: 
-	rm vacina.o utente.o centroVacinacao.o main
+	rm vacina.o utente.o centroVacinacao.o listaVacinas.o listaCentros.o listaUtentes.o main
 
 run:
-	#mingw32-make all -> apenas no Windows
-	make all
+	mingw32-make all
 	./main

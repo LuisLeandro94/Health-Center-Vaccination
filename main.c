@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <locale.h>
 #include "listaUtentes.h"
 #include "listaVacinas.h"
 #include "listaCentros.h"
@@ -47,7 +48,7 @@ void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
         //removerUtente(&lu, lc, lv);
         break;
     case 0:
-    break;
+        break;
     default:
         printf("Opção inválida!");
         break;
@@ -59,16 +60,23 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
     int opcao;
 
     printf("########################################\n");
-    printf("#-------------MENU INICIAL-------------#\n");
+    printf("#                                      #\n");
+    printf("#             MENU INICIAL             #\n");
+    printf("#                                      #\n");
     printf("########################################\n");
-    printf("#\t 1 - CENTROS DE VACINAÇÃO       #\n");
-    printf("#\t 2 - UTENTES                    #\n");
-    printf("#\t 3 - VACINAS                    #\n");
-    printf("#\t 0 - SAIR                       #\n");
-    printf("#########################################\n");
+    printf("#                                      #\n");
+    printf("#\t 1 - CENTROS DE VACINAÇÃO      #\n");
+    printf("#                                      #\n");
+    printf("#\t 2 - UTENTES                   #\n");
+    printf("#                                      #\n");
+    printf("#\t 3 - VACINAS                   #\n");
+    printf("#                                      #\n");
+    printf("#\t 0 - SAIR                      #\n");
+    printf("#                                      #\n");
+    printf("########################################\n");
     printf(">\t Digite a sua opção -> ");
     scanf("%d", &opcao);
-    system("clear");
+    system("cls");
 
     switch (opcao)
     {
@@ -92,6 +100,7 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
 
 int main(int argc, char const *argv[])
 {
+    setlocale(LC_ALL, "Portuguese"); //Habilita a acentuação para o português
     //Definicao de SNS
     ListaUtentes lu;
     lu.numeroUtentes = 0;
@@ -106,6 +115,4 @@ int main(int argc, char const *argv[])
     {
         menuInicial(lc, lu, lv);
     }
-
-
 }
