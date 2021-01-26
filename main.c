@@ -15,7 +15,7 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
     acrescentaUtente(lu, u);
 }
 
-void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
+void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 {
     int opcao;
 
@@ -36,13 +36,13 @@ void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
     printf("#########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    system("clear");
+    system("cls");
 
     switch (opcao)
     {
     case 1:
-        menuUtente(&lu, lc, lv);
-        gravarDadosListaUtentes(lu);
+        menuUtente(lu, *lc, *lv);
+        gravarDadosListaUtentes(*lu);
         break;
     case 2:
         //editarUtente(&lu, lc, lv);
@@ -58,9 +58,12 @@ void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
     }
 }
 
-void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
+void menuInicial()
 {
     int opcao;
+    ListaCentros lc;
+    ListaUtentes lu;
+    ListaVacinas lv;
 
     printf("########################################\n");
     printf("#                                      #\n");
@@ -84,13 +87,13 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
     switch (opcao)
     {
     case 1:
-        menuCentro(lc);
+        menuCentro();
         break;
     case 2:
-        menuUtentes(lu, lc, lv);
+        menuUtentes(&lu, &lv, &lc);
         break;
     case 3:
-        menuVacina(lv);
+        menuVacina();
         break;
     case 0:
         exit(0);
@@ -116,6 +119,6 @@ int main(int argc, char const *argv[])
 
     while (opcao != 0)
     {
-        menuInicial(lc, lu, lv);
+        menuInicial();
     }
 }

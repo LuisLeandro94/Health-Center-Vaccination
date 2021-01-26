@@ -56,9 +56,8 @@ void getVacinaByID(int vacinaID, ListaVacinas lv)
     }
 }
 
-void menuVacina()
+void menuVacina(ListaVacinas *lv)
 {
-    ListaVacinas lv;
     int opcao;
 
     printf("#########################################\n");
@@ -78,13 +77,14 @@ void menuVacina()
     printf("#########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    system("clear");
+    system("cls");
 
     switch (opcao)
     {
     case 1:
-        adicionarVacina(&lv);
-        gravarDadosListaVacinas(lv);
+        printf("qq coisa");
+        adicionarVacina(lv);
+        gravarDadosListaVacinas(*lv);
         break;
     case 2:
         //editarVacina();

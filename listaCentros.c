@@ -55,9 +55,8 @@ void getCentroById(int centroID, ListaCentros lc)
     }
 }
 
-void menuCentro()
+void menuCentro(ListaCentros *lc)
 {
-    ListaCentros lc;
     int opcao;
 
     printf("#########################################\n");
@@ -84,8 +83,8 @@ void menuCentro()
     switch (opcao)
     {
     case 1:
-        adicionarCentro(&lc);
-        gravarDadosListaCentros(lc);
+        adicionarCentro(lc);
+        gravarDadosListaCentros(*lc);
         break;
     case 2:
         //editarVacina();
@@ -94,7 +93,7 @@ void menuCentro()
         //inativarVacina();
         break;
     case 4:
-        listarCentros(lc);
+        listarCentros(*lc);
         break;
     case 0:
         break;

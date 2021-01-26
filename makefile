@@ -1,5 +1,6 @@
 all: listaCentros.o listaUtentes.o listaVacinas.o utente.o centroVacinacao.o vacina.o main.c
-	gcc -g -o main.o utente.o  listaCentros.o centroVacinacao.o listaUtentes.o listaVacinas.o vacina.o main.c
+	gcc -g -o main.exe utente.o  listaCentros.o centroVacinacao.o listaUtentes.o listaVacinas.o vacina.o main.c
+
 
 listaCentros.o: centroVacinacao.o listaCentros.c
 	gcc -g -o listaCentros.o centroVacinacao.o listaCentros.c -c 
@@ -19,8 +20,8 @@ vacina.o: vacina.c
 	gcc -g -o vacina.o vacina.c -c
 
 clean: 
-	del vacina.o utente.o centroVacinacao.o listaVacinas.o listaCentros.o listaUtentes.o main.o
+	del vacina.o utente.o centroVacinacao.o listaVacinas.o listaCentros.o listaUtentes.o main.exe
 
 run:
 	mingw32-make all
-	./main.o
+	./main.exe
