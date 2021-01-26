@@ -58,12 +58,10 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     }
 }
 
-void menuInicial()
+void menuInicial(ListaCentros *lc, ListaUtentes *lu,ListaVacinas *lv)
 {
     int opcao;
-    ListaCentros lc;
-    ListaUtentes lu;
-    ListaVacinas lv;
+
 
     printf("########################################\n");
     printf("#                                      #\n");
@@ -87,13 +85,13 @@ void menuInicial()
     switch (opcao)
     {
     case 1:
-        menuCentro();
+        menuCentro(lc);
         break;
     case 2:
-        menuUtentes(&lu, &lv, &lc);
+        menuUtentes(lu, lv, lc);
         break;
     case 3:
-        menuVacina();
+        menuVacina(lv);
         break;
     case 0:
         exit(0);
@@ -107,18 +105,25 @@ void menuInicial()
 int main(int argc, char const *argv[])
 {
     //Definicao de SNS
-    ListaUtentes lu;
+
+ 
     ListaCentros lc;
     ListaVacinas lv;
+    ListaUtentes lu;
 
-    carregarDadosListaCentros(&lc);
+    lc.numeroCentros = 0;
+    lv.numeroVacinas = 0;
+    lu.numeroUtentes = 0;
+ 
+
+    
+   carregarDadosListaCentros(&lc); 
     carregarDadosListaUtentes(&lu);
     carregarDadosListaVacinas(&lv);
-
     int opcao = -1;
 
     while (opcao != 0)
     {
-        menuInicial();
+        menuInicial(&lc,&lu,&lv);
     }
 }

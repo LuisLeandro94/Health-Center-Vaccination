@@ -11,4 +11,4 @@ void adicionarCentro(ListaCentros *lc);
 void carregarDadosListaCentros(ListaCentros *lc);
 void gravarDadosListaCentros(ListaCentros lc);
 void getCentroById(int centroID, ListaCentros lc);
-void menuCentro();
+void menuCentro(ListaCentros *lc);
