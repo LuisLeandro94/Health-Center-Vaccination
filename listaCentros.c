@@ -9,13 +9,25 @@ int listarCentros( ListaCentros lc){
     }
     scanf("%d", &centroId);
 
-    //falta controlar se a opcao inserida
-    return centroId;
+    for(int i = 0; i < lc.numeroCentros; i++)
+    {
+        if(centroId == lc.listaCentros[i].centroID)
+        {
+            return centroId;
+        }
+        else
+        {
+            printf("Centro de Vacinação não encontrado!\n");
+            return -1;
+        }
+    }
+    return 0;
 }   
 
 void adicionarCentro( ListaCentros *lc){
     CentroVacinacao c = criarCentro(lc->numeroCentros);
-    lc->listaCentros[lc->numeroCentros++] = c;
+    lc->listaCentros[lc->numeroCentros] = c;
+    lc->numeroCentros++;
 }
 
 void carregarDadosListaCentros(ListaCentros *lc){
@@ -46,9 +58,8 @@ void getCentroById(int centroID, ListaCentros lc){
     }
 }
 
-void menuCentro()
+void menuCentro(ListaCentros lc)
 {
-    ListaCentros lc;
     lc.numeroCentros = 0;
     int opcao;
 

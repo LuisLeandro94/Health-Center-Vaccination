@@ -15,14 +15,10 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
     acrescentaUtente(lu, u);
 }
 
-
-void menuUtentes()
+void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
 {
-    ListaUtentes lu;
     lu.numeroUtentes = 0;
-    ListaCentros lc;
     lc.numeroCentros = 0;
-    ListaVacinas lv;
     lv.numeroVacinas = 0;
 
     int opcao;
@@ -58,7 +54,7 @@ void menuUtentes()
     }
 }
 
-void menuInicial()
+void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
 {
     int opcao;
 
@@ -77,10 +73,10 @@ void menuInicial()
     switch (opcao)
     {
     case 1:
-        menuCentro();
+        menuCentro(lc);
         break;
     case 2:
-        menuUtentes();
+        menuUtentes(lu, lc, lv);
         break;
     case 3:
         menuVacina();
@@ -108,7 +104,7 @@ int main(int argc, char const *argv[])
 
     while (opcao != 0)
     {
-        menuInicial();
+        menuInicial(lc, lu, lv);
     }
 
 
