@@ -11,19 +11,7 @@ int listarCentros(ListaCentros lc)
     }
     scanf("%d", &centroId);
 
-    for (int i = 0; i < lc.numeroCentros; i++)
-    {
-        if (centroId == lc.listaCentros[i].centroID)
-        {
-            return centroId;
-        }
-        else
-        {
-            printf("Centro de Vacinacao nao encontrado!\n");
-            return -1;
-        }
-    }
-    return 0;
+    return centroId;
 }
 
 void adicionarCentro(ListaCentros *lc)
@@ -46,7 +34,7 @@ void carregarDadosListaCentros(ListaCentros *lc)
     fclose(file);
 }
 
-void gravarDadosListaTurmas(ListaCentros lc)
+void gravarDadosListaCentros(ListaCentros lc)
 {
     FILE *file = fopen("listaCentros.dat", "wb");
     rewind(file);
@@ -67,8 +55,9 @@ void getCentroById(int centroID, ListaCentros lc)
     }
 }
 
-void menuCentro(ListaCentros lc)
+void menuCentro()
 {
+    ListaCentros lc;
     lc.numeroCentros = 0;
     int opcao;
 
@@ -84,23 +73,30 @@ void menuCentro(ListaCentros lc)
     printf("#                                       #\n");
     printf("#\t 3 - INATIVAR CENTRO            #\n");
     printf("#                                       #\n");
+    printf("#\t 4 - LISTAR CENTROS             #\n");
+    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
     printf("#########################################\n");
-    printf(">\t Digite a sua opção -> ");
+    printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    system("clear");
+    system("cls");
 
     switch (opcao)
     {
     case 1:
         adicionarCentro(&lc);
+        gravarDadosListaCentros(lc);
         break;
     case 2:
         //editarVacina();
         break;
     case 3:
         //inativarVacina();
+        break;
+    case 4:
+        carregarDadosListaCentros(&lc);
+        listarCentros(lc);
         break;
     case 0:
         break;

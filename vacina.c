@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-Vacina criarVacina(int vacinID)
+Vacina criarVacina(int vacinaID)
 {
     Vacina v;
     char temp[20];
@@ -21,5 +21,8 @@ Vacina criarVacina(int vacinID)
     printf("Meses entre doses: ");
     fgets(temp, sizeof(temp), stdin);
     sscanf(temp, "%d", &v.mesesEntreDoses);
+
+    v.vacinaID = vacinaID;
+
     return v;
 }

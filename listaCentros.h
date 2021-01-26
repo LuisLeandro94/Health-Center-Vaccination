@@ -6,9 +6,9 @@ typedef struct sListaCentros
     int numeroCentros;
 } ListaCentros;
 
-int listarCentros( ListaCentros lc);
-void adicionarCentro( ListaCentros *lc);
+int listarCentros(ListaCentros lc);
+void adicionarCentro(ListaCentros *lc);
 void carregarDadosListaCentros(ListaCentros *lc);
-void gravarDadosListaTurmas(ListaCentros lc);
+void gravarDadosListaCentros(ListaCentros lc);
 void getCentroById(int centroID, ListaCentros lc);
 void menuCentro();
