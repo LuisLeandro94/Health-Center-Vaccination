@@ -58,7 +58,6 @@ void getCentroById(int centroID, ListaCentros lc)
 void menuCentro()
 {
     ListaCentros lc;
-    lc.numeroCentros = 0;
     int opcao;
 
     printf("#########################################\n");
@@ -95,7 +94,6 @@ void menuCentro()
         //inativarVacina();
         break;
     case 4:
-        carregarDadosListaCentros(&lc);
         listarCentros(lc);
         break;
     case 0:

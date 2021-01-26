@@ -17,21 +17,24 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
 
 void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
 {
-    lu.numeroUtentes = 0;
-    lc.numeroCentros = 0;
-    lv.numeroVacinas = 0;
-
     int opcao;
 
     printf("#########################################\n");
-    printf("#------------MENU DE UTENTES------------#\n");
+    printf("#                                       #\n");
+    printf("#            MENU DE UTENTES            #\n");
+    printf("#                                       #\n");
     printf("#########################################\n");
+    printf("#                                       #\n");
     printf("#\t 1 - CRIAR NOVO UTENTE          #\n");
+    printf("#                                       #\n");
     printf("#\t 2 - EDITAR UTENTE              #\n");
+    printf("#                                       #\n");
     printf("#\t 3 - REMOVER UTENTE             #\n");
+    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
+    printf("#                                       #\n");
     printf("#########################################\n");
-    printf(">\t Digite a sua opção -> ");
+    printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
     system("clear");
 
@@ -39,6 +42,7 @@ void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
     {
     case 1:
         menuUtente(&lu, lc, lv);
+        gravarDadosListaUtentes(lu);
         break;
     case 2:
         //editarUtente(&lu, lc, lv);
@@ -49,7 +53,7 @@ void menuUtentes(ListaUtentes lu, ListaCentros lc, ListaVacinas lv)
     case 0:
         break;
     default:
-        printf("Opção inválida!");
+        printf("Opcao invalida!");
         break;
     }
 }
@@ -86,7 +90,7 @@ void menuInicial(ListaCentros lc, ListaUtentes lu, ListaVacinas lv)
         menuUtentes(lu, lc, lv);
         break;
     case 3:
-        menuVacina();
+        menuVacina(lv);
         break;
     case 0:
         exit(0);
@@ -101,11 +105,12 @@ int main(int argc, char const *argv[])
 {
     //Definicao de SNS
     ListaUtentes lu;
-    lu.numeroUtentes = 0;
     ListaCentros lc;
-    lc.numeroCentros = 0;
     ListaVacinas lv;
-    lv.numeroVacinas = 0;
+
+    carregarDadosListaCentros(&lc);
+    carregarDadosListaUtentes(&lu);
+    carregarDadosListaVacinas(&lv);
 
     int opcao = -1;
 

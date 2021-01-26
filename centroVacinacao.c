@@ -12,6 +12,7 @@ CentroVacinacao criarCentro(int centroID)
     while (getchar() != '\n')
         ;
     fgets(c.nomeCentro, NOME, stdin);
+    c.nomeCentro[strlen(c.nomeCentro) - 1] = '\0';
     printf("Codigo do Centro: ");
     fgets(temp, sizeof(temp), stdin);
     sscanf(temp, "%d", &c.codigoCentro);

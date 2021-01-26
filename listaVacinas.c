@@ -59,7 +59,6 @@ void getVacinaByID(int vacinaID, ListaVacinas lv)
 void menuVacina()
 {
     ListaVacinas lv;
-    lv.numeroVacinas = 0;
     int opcao;
 
     printf("#########################################\n");
@@ -85,6 +84,7 @@ void menuVacina()
     {
     case 1:
         adicionarVacina(&lv);
+        gravarDadosListaVacinas(lv);
         break;
     case 2:
         //editarVacina();
