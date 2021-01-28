@@ -7,12 +7,29 @@ int listarVacinas(ListaVacinas lv)
     int vacinaId;
     for (int i = 0; i < lv.numeroVacinas; i++)
     {
-        printf("%d -> %s \n", lv.listaVacinas[i].vacinaID, lv.listaVacinas[i].designacaoVacina);
+        if (lv.listaVacinas[i].activo == 1)
+        {
+            printf("%d -> %s \n", lv.listaVacinas[i].vacinaID, lv.listaVacinas[i].designacaoVacina);
+        }
     }
     scanf("%d", &vacinaId);
 
-    //falta controlar a opção inserida se existe ou nao
+    if (vacinaId >= lv.numeroVacinas + 1)
+    {
+        printf("Vacina inexistente. Escolha outra vacina!\n");
+    }
     return vacinaId;
+}
+
+void listarVacinasGeral(ListaVacinas lv)
+{
+    for (int i = 0; i < lv.numeroVacinas; i++)
+    {
+        if (lv.listaVacinas[i].activo == 1)
+        {
+            printf("%d -> %s\n", lv.listaVacinas[i].vacinaID, lv.listaVacinas[i].designacaoVacina);
+        }
+    }
 }
 
 void adicionarVacina(ListaVacinas *lv)
@@ -56,9 +73,113 @@ void getVacinaByID(int vacinaID, ListaVacinas lv)
     }
 }
 
+void inativarVacina(ListaVacinas *lv, int numVacina)
+{
+    Vacina v;
+    listarVacinasGeral(*lv);
+
+    printf("Escolha a vacina a inativar: ");
+    scanf("%d", &numVacina);
+    if (numVacina >= lv->numeroVacinas + 1)
+    {
+        printf("Impossivel inativar. Vacina inexistente.");
+    }
+    else
+    {
+        lv->listaVacinas[numVacina].activo = 0;
+    }
+}
+
+void listarVacinasInativas(ListaVacinas lv)
+{
+    for (int i = 0; i < lv.numeroVacinas; i++)
+    {
+        if (lv.listaVacinas[i].activo == 0)
+        {
+            printf("%d -> %s\n", lv.listaVacinas[i].vacinaID, lv.listaVacinas[i].designacaoVacina);
+        }
+    }
+}
+
+void ativarVacina(ListaVacinas *lv, int numVacina)
+{
+    Vacina v;
+    listarVacinasInativas(*lv);
+
+    printf("Escolha a vacina a ativar: ");
+    scanf("%d", &numVacina);
+    if (numVacina >= lv->numeroVacinas + 1)
+    {
+        printf("Impossivel ativar. Vacina inexistente ou ja ativa!");
+    }
+    else
+    {
+        lv->listaVacinas[numVacina].activo = 1;
+    }
+}
+
+void editaVacina(ListaVacinas *lv, int numVacina)
+{
+    int opcao;
+    char temp[20];
+
+    listarVacinasGeral(*lv);
+    printf("Escolha a vacina a editar: \n");
+    scanf("%d", &numVacina);
+    system("cls");
+    printf("Escolheu a vacina: %s\n", lv->listaVacinas[numVacina].designacaoVacina);
+    printf("O que deseja alterar?\n");
+    printf("1 -> Nome da vacina \n");
+    printf("2 -> Codigo da vacina\n");
+    printf("3 -> Numero de doses da vacina\n");
+    printf("4 -> Espera entre doses \n");
+    printf("0 -> Sair \n");
+    printf("> Introduza a sua opcao: ");
+    scanf("%d", &opcao);
+    switch (opcao)
+    {
+    case 1:
+        printf("Nome original: %s\n", lv->listaVacinas[numVacina].designacaoVacina);
+        printf("Novo nome: \n");
+        while (getchar() != '\n')
+            ;
+        fgets(lv->listaVacinas[numVacina].designacaoVacina, DESIGNACAO, stdin);
+        break;
+    case 2:
+        printf("Codigo original: %d\n", lv->listaVacinas[numVacina].codigoVacina);
+        printf("Novo codigo: \n");
+        while (getchar() != '\n')
+            ;
+        fgets(temp, sizeof(temp), stdin);
+        sscanf(temp, "%d", &lv->listaVacinas[numVacina].codigoVacina);
+        break;
+    case 3:
+        printf("Numero de doses original: %d\n", lv->listaVacinas[numVacina].numDoses);
+        printf("Novo numero de doses: \n");
+        while (getchar() != '\n')
+            ;
+        fgets(temp, sizeof(temp), stdin);
+        sscanf(temp, "%d", &lv->listaVacinas[numVacina].numDoses);
+    case 4:
+        printf("Espera entre doses original: %d\n", lv->listaVacinas[numVacina].mesesEntreDoses);
+        printf("Nova espera entre doses: \n");
+        while (getchar() != '\n')
+            ;
+        fgets(temp, sizeof(temp), stdin);
+        sscanf(temp, "%d", &lv->listaVacinas[numVacina].mesesEntreDoses);
+        break;
+    case 0:
+        break;
+    default:
+        printf("Opcao invalida!\n");
+        break;
+    }
+}
+
 void menuVacina(ListaVacinas *lv)
 {
     int opcao;
+    int numVacina;
 
     printf("#########################################\n");
     printf("#                                       #\n");
@@ -72,6 +193,10 @@ void menuVacina(ListaVacinas *lv)
     printf("#                                       #\n");
     printf("#\t 3 - INATIVAR VACINA            #\n");
     printf("#                                       #\n");
+    printf("#\t 4 - ATIVAR VACINAS             #\n");
+    printf("#                                       #\n");
+    printf("#\t 5 - LISTAR VACINAS             #\n");
+    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
     printf("#########################################\n");
@@ -82,15 +207,26 @@ void menuVacina(ListaVacinas *lv)
     switch (opcao)
     {
     case 1:
-        printf("qq coisa");
         adicionarVacina(lv);
         gravarDadosListaVacinas(*lv);
+        system("cls");
         break;
     case 2:
-        //editarVacina();
+        editaVacina(lv, numVacina);
+        gravarDadosListaVacinas(*lv);
+        system("cls");
         break;
     case 3:
-        //inativarVacina();
+        inativarVacina(lv, numVacina);
+        gravarDadosListaVacinas(*lv);
+        system("cls");
+        break;
+    case 4:
+        ativarVacina(lv, numVacina);
+        gravarDadosListaVacinas(*lv);
+        break;
+    case 5:
+        listarVacinasGeral(*lv);
         break;
     case 0:
         break;

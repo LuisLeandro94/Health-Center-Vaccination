@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-Utente criarUtente()
+Utente criarUtente(int utenteID)
 {
     Utente u;
     int centro;
@@ -23,5 +23,7 @@ Utente criarUtente()
     printf("Contacto do Utente: ");
     fgets(u.contacto, CONTACTO, stdin);
     u.contacto[strlen(u.contacto) - 1] = '\0';
+
+    u.utenteID = utenteID;
     return u;
 }

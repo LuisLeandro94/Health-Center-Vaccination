@@ -10,9 +10,9 @@ typedef struct sUtente
     char contacto[CONTACTO];
     int vacinaID;
     int centroID;
-    int activo;
     int dosesAdministradas;
     char dataUltimaDose[DATA];
+    int utenteID;
 } Utente;
 
 Utente criarUtente();

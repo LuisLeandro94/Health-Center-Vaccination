@@ -12,6 +12,7 @@ Vacina criarVacina(int vacinaID)
     while (getchar() != '\n')
         ;
     fgets(v.designacaoVacina, DESIGNACAO, stdin);
+    v.designacaoVacina[strlen(v.designacaoVacina) - 1] = '\0';
     printf("Codigo : ");
     fgets(temp, sizeof(temp), stdin);
     sscanf(temp, "%d", &v.codigoVacina);
@@ -21,6 +22,7 @@ Vacina criarVacina(int vacinaID)
     printf("Meses entre doses: ");
     fgets(temp, sizeof(temp), stdin);
     sscanf(temp, "%d", &v.mesesEntreDoses);
+    v.activo = 1;
 
     v.vacinaID = vacinaID;
 

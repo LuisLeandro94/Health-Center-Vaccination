@@ -18,6 +18,7 @@ CentroVacinacao criarCentro(int centroID)
     sscanf(temp, "%d", &c.codigoCentro);
     printf("Morada do Centro: ");
     fgets(c.morada, MORADA, stdin);
+    c.activo = 1;
     c.centroID = centroID;
 
     return c;

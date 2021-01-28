@@ -9,3 +9,5 @@ typedef struct sListaUtentes
 void carregarDadosListaUtentes(ListaUtentes *lu);
 void gravarDadosListaUtentes(ListaUtentes lu);
 void acrescentaUtente(ListaUtentes *lu, Utente u);
+void listarUtentes(ListaUtentes lu);
+void editaUtente(ListaUtentes *lu, int numUtente);

@@ -1,4 +1,4 @@
-#define DESIGNACAO 25
+#define DESIGNACAO 40
 
 typedef struct sVacina
 {
@@ -7,6 +7,7 @@ typedef struct sVacina
     int numDoses;
     int mesesEntreDoses;
     int vacinaID;
+    int activo;
 } Vacina;
 
 Vacina criarVacina(int vacinID);

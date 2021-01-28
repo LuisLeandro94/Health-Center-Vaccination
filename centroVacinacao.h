@@ -10,6 +10,7 @@ typedef struct sCentroVacinacao
     char nomeCentro[NOME];
     char morada[MORADA];
     int centroID;
+    int activo;
 } CentroVacinacao;
 
 CentroVacinacao criarCentro(int centroID);

@@ -7,7 +7,7 @@
 
 void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
 {
-    Utente u = criarUtente();
+    Utente u = criarUtente(lu->utentes[lu->numeroUtentes - 1].utenteID + 1);
     printf("Introduza o centro:\n");
     u.centroID = listarCentros(lc);
     printf("Introduza a vacina:\n");
@@ -15,9 +15,30 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
     acrescentaUtente(lu, u);
 }
 
+void removerUtente(ListaUtentes *lu, int numUtente)
+{
+    Utente u;
+    listarUtentes(*lu);
+    printf("Escolha o utente a remover: ");
+    scanf("%d", &numUtente);
+    if (numUtente >= lu->numeroUtentes + 1)
+    {
+        printf("Impossivel apagar. Utente inexistente.");
+    }
+    else
+    {
+        for (int i = numUtente - 1; i < lu->numeroUtentes - 1; i++) //lu->numeroUtentes - 1
+        {
+            lu->utentes[i] = lu->utentes[i + 1];
+        }
+        lu->numeroUtentes--;
+    }
+}
+
 void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 {
     int opcao;
+    int numUtente;
 
     printf("#########################################\n");
     printf("#                                       #\n");
@@ -31,6 +52,8 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     printf("#                                       #\n");
     printf("#\t 3 - REMOVER UTENTE             #\n");
     printf("#                                       #\n");
+    printf("#\t 4 - LISTAR UTENTES             #\n");
+    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
     printf("#########################################\n");
@@ -43,12 +66,20 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     case 1:
         menuUtente(lu, *lc, *lv);
         gravarDadosListaUtentes(*lu);
+        system("cls");
         break;
     case 2:
-        //editarUtente(&lu, lc, lv);
+        editaUtente(lu, numUtente);
+        gravarDadosListaUtentes(*lu);
+        system("cls");
         break;
     case 3:
-        //removerUtente(&lu, lc, lv);
+        removerUtente(lu, numUtente);
+        gravarDadosListaUtentes(*lu);
+        system("cls");
+        break;
+    case 4:
+        listarUtentes(*lu);
         break;
     case 0:
         break;
@@ -58,10 +89,9 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     }
 }
 
-void menuInicial(ListaCentros *lc, ListaUtentes *lu,ListaVacinas *lv)
+void menuInicial(ListaCentros *lc, ListaUtentes *lu, ListaVacinas *lv)
 {
     int opcao;
-
 
     printf("########################################\n");
     printf("#                                      #\n");
@@ -106,7 +136,6 @@ int main(int argc, char const *argv[])
 {
     //Definicao de SNS
 
- 
     ListaCentros lc;
     ListaVacinas lv;
     ListaUtentes lu;
@@ -114,16 +143,14 @@ int main(int argc, char const *argv[])
     lc.numeroCentros = 0;
     lv.numeroVacinas = 0;
     lu.numeroUtentes = 0;
- 
 
-    
-   carregarDadosListaCentros(&lc); 
+    carregarDadosListaCentros(&lc);
     carregarDadosListaUtentes(&lu);
     carregarDadosListaVacinas(&lv);
     int opcao = -1;
 
     while (opcao != 0)
     {
-        menuInicial(&lc,&lu,&lv);
+        menuInicial(&lc, &lu, &lv);
     }
 }
