@@ -27,14 +27,38 @@ void removerUtente(ListaUtentes *lu, int numUtente)
     }
     else
     {
-        for (int i = numUtente - 1; i < lu->numeroUtentes - 1; i++) //lu->numeroUtentes - 1
+        int i;
+        for (i = 0; i < lu->numeroUtentes; i++)
         {
-            lu->utentes[i] = lu->utentes[i + 1];
+            if (lu->utentes[i].utenteID == numUtente)
+                break;
         }
-        lu->numeroUtentes--;
+        for (int j = i + 1; j < lu->numeroUtentes; j++)
+        {
+            lu->utentes[j - 1] = lu->utentes[j];
+        }
+        lu->numeroUtentes = lu->numeroUtentes - 1;
     }
 }
 
+void dashboard()
+{
+    ListaUtentes lu;
+    ListaVacinas lv;
+    ListaCentros lc;
+
+    float media = mediaIdades(lu);
+
+    printf("#########################################\n");
+    printf("#                                       #\n");
+    printf("#               DASHBOARD               #\n");
+    printf("#                                       #\n");
+    printf("#########################################\n");
+    printf("\n");
+    printf("Quantidade vacinas administradas: %d\n", lv.numeroVacinas);
+    printf("Média de idades dos utentes vacinados: %.2f\n", media);
+    printf("Quantidade de utentes vacinados por vacina:\n");
+}
 void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 {
     int opcao;
@@ -149,6 +173,7 @@ int main(int argc, char const *argv[])
     carregarDadosListaVacinas(&lv);
     int opcao = -1;
 
+    //dashboard();
     while (opcao != 0)
     {
         menuInicial(&lc, &lu, &lv);
