@@ -92,3 +92,14 @@ void editaUtente(ListaUtentes *lu, int numUtente)
         break;
     }
 }
+
+float mediaIdades(ListaUtentes lu)
+{
+    int temp = 0;
+    for (int i = 0; i < lu.numeroUtentes; i++)
+    {
+        temp += lu.utentes[i].idade;
+    }
+    float media = temp / lu.numeroUtentes;
+    return media;
+}
