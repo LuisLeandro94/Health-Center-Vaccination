@@ -8,6 +8,14 @@
 void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
 {
     Utente u = criarUtente(lu->utentes[lu->numeroUtentes - 1].utenteID + 1);
+    for(int i = 0; i < lv.numeroVacinas; i++)
+    {
+        if(lv.listaVacinas[i].vacinaID == u.vacinaID)
+        {
+            lv.listaVacinas[i].numUtentes++;
+            gravarDadosListaVacinas(lv);
+        }
+    }
     printf("Introduza o centro:\n");
     u.centroID = listarCentros(lc);
     printf("Introduza a vacina:\n");
@@ -39,6 +47,17 @@ void removerUtente(ListaUtentes *lu, int numUtente)
             lu->utentes[j - 1] = lu->utentes[j];
         }
         lu->numeroUtentes = lu->numeroUtentes - 1;
+    }
+}
+
+void quantUtVacina(ListaUtentes lu, ListaVacinas lv)
+{
+    for (int i = 0; i < lv.numeroVacinas; i++)
+    {
+        for(int j = 0; i < lu.numeroUtentes; i++)
+        {
+
+        }
     }
 }
 
@@ -208,6 +227,10 @@ int main(int argc, char const *argv[])
     printf("Quantidade vacinas administradas: %d\n", lv.numeroVacinas);
     printf("Media de idades dos utentes vacinados: %.2f\n", media);
     printf("Quantidade de utentes vacinados por vacina:\n");
+    for(int i = 0; i < lv.numeroVacinas; i++)
+    {
+        printf("%s -> %d\n", lv.listaVacinas[i].designacaoVacina, lv.listaVacinas[i].numUtentes);
+    }
     printf("\n");
     printf("\n");
 
