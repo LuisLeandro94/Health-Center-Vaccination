@@ -1,6 +1,7 @@
 #define NOME 100
 #define CONTACTO 11
 #define DATA 10
+#include <time.h>
 
 typedef struct sUtente
 {
@@ -11,7 +12,9 @@ typedef struct sUtente
     int vacinaID;
     int centroID;
     int dosesAdministradas;
-    char dataUltimaDose[DATA];
+    int dayUltimaDose;
+    int monthUltimaDose;
+    int yearUltimaDose;
     int utenteID;
 } Utente;
 
