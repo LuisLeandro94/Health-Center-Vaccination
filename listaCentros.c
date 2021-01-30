@@ -192,25 +192,25 @@ void menuCentro(ListaCentros *lc)
     printf("#########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    //system("cls");
+    system("cls");
 
     switch (opcao)
     {
     case 1:
         adicionarCentro(lc);
         gravarDadosListaCentros(*lc);
-        //system("cls");
+        system("cls");
         break;
     case 2:
 
         editaCentro(lc, numCentro);
         gravarDadosListaCentros(*lc);
-        //system("cls");
+        system("cls");
         break;
     case 3:
         inativarCentro(lc, numCentro);
         gravarDadosListaCentros(*lc);
-        //system("cls");
+        system("cls");
         break;
     case 4:
         ativarCentro(lc, numCentro);

@@ -12,28 +12,6 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
     u.centroID = listarCentros(lc);
     printf("Introduza a vacina:\n");
     u.vacinaID = listarVacinas(lv);
-    printf("Insira a data da ultima dose:\n");
-    printf("Dia: ");
-    scanf("%d", &u.diaUltimaDose);
-    if(u.diaUltimaDose < 1 && u.diaUltimaDose > 31)
-    {
-        printf("Dia errado. Por favor repita: ");
-        scanf("%d", &u.diaUltimaDose);
-    }
-    printf("Mes: ");
-    scanf("%d", &u.mesUltimaDose);
-    if(u.mesUltimaDose < 1 && u.mesUltimaDose > 12)
-    {
-        printf("Mes errado. Por favor repita: ");
-        scanf("%d", &u.mesUltimaDose);
-    }
-    printf("Ano: ");
-    scanf("%d", &u.anoUltimaDose);
-    if(u.anoUltimaDose < 2021 && u.anoUltimaDose > 2025)
-    {
-        printf("Ano errado. Por favor repita: ");
-        scanf("%d", &u.anoUltimaDose);
-    }
 
     acrescentaUtente(lu, u);
 }
@@ -64,25 +42,6 @@ void removerUtente(ListaUtentes *lu, int numUtente)
     }
 }
 
-void utentesPorVacina(ListaUtentes lu, ListaVacinas lv)
-{
-    int numVacina;
-    listarVacinasGeral(lv);
-    printf("Escolha a sua opção: ");
-    scanf("%d", &numVacina);
-    for(int i = 0; i < lu.numeroUtentes; i++)
-    {
-        if(lu.utentes[i].vacinaID == numVacina)
-        {
-            printf("%d -> %s (%s)", lu.utentes[i].utenteID, lu.utentes[i].nomeUtente, lv.listaVacinas[numVacina].designacaoVacina);
-        }
-        else
-        {
-            printf("Sem resultados!\n");
-        }
-    }
-}
-
 void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 {
     int opcao;
@@ -102,41 +61,32 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     printf("#                                       #\n");
     printf("#\t 4 - LISTAR UTENTES             #\n");
     printf("#                                       #\n");
-    printf("#\t 5 - PROXIMA DOSE               #\n");
-    printf("#                                       #\n");
-    printf("#\t 6 - LISTAR UTENTES POR VACINA  #\n");
-    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
     printf("#########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    //system("cls");
+    system("cls");
 
     switch (opcao)
     {
     case 1:
         menuUtente(lu, *lc, *lv);
         gravarDadosListaUtentes(*lu);
-        //system("cls");
+        system("cls");
         break;
     case 2:
         editaUtente(lu, numUtente);
         gravarDadosListaUtentes(*lu);
-        //system("cls");
+        system("cls");
         break;
     case 3:
         removerUtente(lu, numUtente);
         gravarDadosListaUtentes(*lu);
-        //system("cls");
+        system("cls");
         break;
     case 4:
         listarUtentes(*lu);
-        break;
-    case 5:
-        break;
-    case 6:
-        utentesPorVacina(*lu, *lv);
         break;
     case 0:
         break;
@@ -167,7 +117,7 @@ void menuInicial(ListaCentros *lc, ListaUtentes *lu, ListaVacinas *lv)
     printf("########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    //system("cls");
+    system("cls");
 
     switch (opcao)
     {

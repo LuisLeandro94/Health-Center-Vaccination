@@ -43,7 +43,7 @@ void editaUtente(ListaUtentes *lu, int numUtente)
     listarUtentes(*lu);
     printf("Escolha o utente a editar: \n");
     scanf("%d", &numUtente);
-    //system("cls");
+    system("cls");
     printf("Escolheu o utente: %s\n", lu->utentes[numUtente].nomeUtente);
     printf("O que deseja alterar?\n");
     printf("1 -> Numero de Utente\n");
