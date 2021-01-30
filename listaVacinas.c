@@ -162,30 +162,22 @@ void editaVacina(ListaVacinas *lv, int numVacina)
     case 1:
         printf("Nome original: %s\n", lv->listaVacinas[numVacina].designacaoVacina);
         printf("Novo nome: \n");
-        while (getchar() != '\n')
-            ;
         fgets(lv->listaVacinas[numVacina].designacaoVacina, DESIGNACAO, stdin);
         break;
     case 2:
         printf("Codigo original: %d\n", lv->listaVacinas[numVacina].codigoVacina);
         printf("Novo codigo: \n");
-        while (getchar() != '\n')
-            ;
         fgets(temp, sizeof(temp), stdin);
         sscanf(temp, "%d", &lv->listaVacinas[numVacina].codigoVacina);
         break;
     case 3:
         printf("Numero de doses original: %d\n", lv->listaVacinas[numVacina].numDoses);
         printf("Novo numero de doses: \n");
-        while (getchar() != '\n')
-            ;
         fgets(temp, sizeof(temp), stdin);
         sscanf(temp, "%d", &lv->listaVacinas[numVacina].numDoses);
     case 4:
         printf("Espera entre doses original: %d\n", lv->listaVacinas[numVacina].mesesEntreDoses);
         printf("Nova espera entre doses: \n");
-        while (getchar() != '\n')
-            ;
         fgets(temp, sizeof(temp), stdin);
         sscanf(temp, "%d", &lv->listaVacinas[numVacina].mesesEntreDoses);
         break;

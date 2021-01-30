@@ -42,6 +42,21 @@ void removerUtente(ListaUtentes *lu, int numUtente)
     }
 }
 
+void utentesPorVacina(ListaUtentes lu, ListaVacinas lv)
+{
+    int numVacina;
+    listarVacinasGeral(lv);
+    printf("Escolha a sua opção: ");
+    scanf("%d", &numVacina);
+    for(int i = 0; i < lu.numeroUtentes; i++)
+    {
+        if(lu.utentes[i].vacinaID == numVacina)
+        {
+            printf("%d -> %s (%s)\n", lu.utentes[i].utenteID, lu.utentes[i].nomeUtente, lv.listaVacinas[numVacina].designacaoVacina);
+        }
+    }
+}
+
 void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 {
     int opcao;
@@ -60,6 +75,8 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     printf("#\t 3 - REMOVER UTENTE             #\n");
     printf("#                                       #\n");
     printf("#\t 4 - LISTAR UTENTES             #\n");
+    printf("#                                       #\n");
+    printf("#\t 5 - UTENTE POR VACINA          #\n");
     printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
@@ -87,6 +104,9 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
         break;
     case 4:
         listarUtentes(*lu);
+        break;
+    case 5:
+        utentesPorVacina(*lu, *lv);
         break;
     case 0:
         break;
