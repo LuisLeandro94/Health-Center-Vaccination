@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../01-Data/listaUtentes.h"
 
 void acrescentaUtente(ListaUtentes *lu, Utente u)
