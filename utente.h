@@ -11,7 +11,9 @@ typedef struct sUtente
     int vacinaID;
     int centroID;
     int dosesAdministradas;
-    char dataUltimaDose[DATA];
+    int diaUltimaDose;
+    int mesUltimaDose;
+    int anoUltimaDose;
     int utenteID;
 } Utente;
 
