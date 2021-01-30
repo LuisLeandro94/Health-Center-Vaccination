@@ -1,6 +1,7 @@
 #include "listaVacinas.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int listarVacinas(ListaVacinas lv)
 {
@@ -32,6 +33,26 @@ void listarVacinasGeral(ListaVacinas lv)
     }
 }
 
+void listarVacinasAlfabeticamente(ListaVacinas lv)
+{
+    char temp[200];
+    for (int i = 0; i < lv.numeroVacinas; i++)
+    {
+        for (int j = i + 1; j < lv.numeroVacinas; j++)
+        {
+            if (strcmp(lv.listaVacinas[i].designacaoVacina, lv.listaVacinas[j].designacaoVacina) > 0)
+            {
+                strcpy(temp, lv.listaVacinas[i].designacaoVacina);
+                strcpy(lv.listaVacinas[i].designacaoVacina, lv.listaVacinas[j].designacaoVacina);
+                strcpy(lv.listaVacinas[j].designacaoVacina, temp);
+            }
+        }
+    }
+    for (int i = 0; i < lv.numeroVacinas; i++)
+    {
+        printf("%s\n", lv.listaVacinas[i].designacaoVacina);
+    }
+}
 void adicionarVacina(ListaVacinas *lv)
 {
     Vacina v = criarVacina(lv->numeroVacinas);
@@ -197,6 +218,8 @@ void menuVacina(ListaVacinas *lv)
     printf("#                                       #\n");
     printf("#\t 5 - LISTAR VACINAS             #\n");
     printf("#                                       #\n");
+    printf("#\t 6 - VACINAS ALFABETICAMENTE    #\n");
+    printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
     printf("#########################################\n");
@@ -227,6 +250,9 @@ void menuVacina(ListaVacinas *lv)
         break;
     case 5:
         listarVacinasGeral(*lv);
+        break;
+    case 6:
+        listarVacinasAlfabeticamente(*lv);
         break;
     case 0:
         break;

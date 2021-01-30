@@ -8,6 +8,7 @@ typedef struct sVacina
     int mesesEntreDoses;
     int vacinaID;
     int activo;
+    int numUtentes;
 } Vacina;
 
 Vacina criarVacina(int vacinID);

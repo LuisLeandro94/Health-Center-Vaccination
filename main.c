@@ -12,6 +12,7 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
     u.centroID = listarCentros(lc);
     printf("Introduza a vacina:\n");
     u.vacinaID = listarVacinas(lv);
+
     acrescentaUtente(lu, u);
 }
 
@@ -41,24 +42,6 @@ void removerUtente(ListaUtentes *lu, int numUtente)
     }
 }
 
-void dashboard()
-{
-    ListaUtentes lu;
-    ListaVacinas lv;
-    ListaCentros lc;
-
-    float media = mediaIdades(lu);
-
-    printf("#########################################\n");
-    printf("#                                       #\n");
-    printf("#               DASHBOARD               #\n");
-    printf("#                                       #\n");
-    printf("#########################################\n");
-    printf("\n");
-    printf("Quantidade vacinas administradas: %d\n", lv.numeroVacinas);
-    printf("Média de idades dos utentes vacinados: %.2f\n", media);
-    printf("Quantidade de utentes vacinados por vacina:\n");
-}
 void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 {
     int opcao;
@@ -172,8 +155,22 @@ int main(int argc, char const *argv[])
     carregarDadosListaUtentes(&lu);
     carregarDadosListaVacinas(&lv);
     int opcao = -1;
+    int temp = 0;
 
-    //dashboard();
+    float media = mediaIdades(lu);
+
+    printf("#########################################\n");
+    printf("#                                       #\n");
+    printf("#               DASHBOARD               #\n");
+    printf("#                                       #\n");
+    printf("#########################################\n");
+    printf("\n");
+    printf("Quantidade vacinas administradas: %d\n", lv.numeroVacinas);
+    printf("Media de idades dos utentes vacinados: %.2f\n", media);
+    printf("Quantidade de utentes vacinados por vacina:\n");
+    printf("\n");
+    printf("\n");
+
     while (opcao != 0)
     {
         menuInicial(&lc, &lu, &lv);
