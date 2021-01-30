@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include "listaUtentes.h"
-#include "listaVacinas.h"
-#include "listaCentros.h"
+#include "./01-Data/listaUtentes.h"
+#include "./01-Data/listaVacinas.h"
+#include "./01-Data/listaCentros.h"
 
 void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
 {

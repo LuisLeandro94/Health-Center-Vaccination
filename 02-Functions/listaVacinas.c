@@ -1,7 +1,7 @@
-#include "listaVacinas.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../01-Data/listaVacinas.h"
 
 int listarVacinas(ListaVacinas lv)
 {

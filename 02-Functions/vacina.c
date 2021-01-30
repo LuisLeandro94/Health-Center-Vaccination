@@ -1,7 +1,7 @@
-#include "vacina.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../01-Data/vacina.h"
 
 Vacina criarVacina(int vacinaID)
 {
