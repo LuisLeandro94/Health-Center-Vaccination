@@ -107,7 +107,7 @@ void seacrhUtente(ListaUtentes lu)
     listarUtentes(lu);
     printf("Insira um utente: ");
     scanf("%d", &numUtente);
-    printf("%s -> %d/%d/%d\n", lu.utentes[numUtente].nomeUtente, lu.utentes[numUtente].dayUltimaDose, lu.utentes[numUtente].monthUltimaDose, lu.utentes[numUtente].yearUltimaDose);
+    printf("%s -> %d/%d/%d\n", lu.utentes[numUtente - 1].nomeUtente, lu.utentes[numUtente - 1].dayUltimaDose, lu.utentes[numUtente - 1].monthUltimaDose, lu.utentes[numUtente -1].yearUltimaDose);
 }
 
 void seacrhUtenteDate(ListaUtentes lu)
@@ -154,9 +154,10 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     printf("#                                       #\n");
     printf("#\t 6 - UTENTE POR CENTRO          #\n");
     printf("#                                       #\n");
-    printf("#\t 7 - UTENTE proxima vacina      #\n");
+    printf("#\t 7 - PROXIMA VACINA UTENTE      #\n");
     printf("#                                       #\n");
-    printf("#\t 8 - UTENTE pesquisar por data  #\n");
+    printf("#\t 8 - PESQUISAR POR DATA PROXIMA #\n");
+    printf("#\t VACINA                         #\n");
     printf("#                                       #\n");
     printf("#\t 0 - SAIR                       #\n");
     printf("#                                       #\n");
@@ -266,8 +267,7 @@ int main(int argc, char const *argv[])
     int opcao = -1;
     int temp = 0;
 
-    // float media = mediaIdades(lu);
-    float media = 12;
+    float media = mediaIdades(lu);
     printf("#########################################\n");
     printf("#                                       #\n");
     printf("#               DASHBOARD               #\n");

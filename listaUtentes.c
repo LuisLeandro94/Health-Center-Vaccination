@@ -96,10 +96,17 @@ void editaUtente(ListaUtentes *lu, int numUtente)
 float mediaIdades(ListaUtentes lu)
 {
     int temp = 0;
-    for (int i = 0; i < lu.numeroUtentes; i++)
+    if(lu.numeroUtentes != 0)
     {
-        temp += lu.utentes[i].idade;
+        for (int i = 0; i < lu.numeroUtentes; i++)
+        {
+            temp += lu.utentes[i].idade;
+        }
+        float media = temp / lu.numeroUtentes;
+        return media;
     }
-    float media = temp / lu.numeroUtentes;
-    return media;
+    else
+    {
+        return 0;
+    }
 }
