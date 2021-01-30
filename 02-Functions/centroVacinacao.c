@@ -13,9 +13,9 @@ CentroVacinacao criarCentro(int centroID)
     do
     {
         while (getchar() != '\n')
-        ;
+            ;
         fgets(c.nomeCentro, NOME, stdin);
-    } while (!((c.nomeCentro[0] >= 'a' && c.nomeCentro[0] <= 'z')||(c.nomeCentro[0] >= 'A' && c.nomeCentro[0] <= 'Z')||(c.nomeCentro[0] == ' ')));
+    } while (!((c.nomeCentro[0] >= 'a' && c.nomeCentro[0] <= 'z') || (c.nomeCentro[0] >= 'A' && c.nomeCentro[0] <= 'Z') || (c.nomeCentro[0] == ' ')));
     c.nomeCentro[strlen(c.nomeCentro) - 1] = '\0';
     printf("Codigo do Centro: ");
     fgets(temp, sizeof(temp), stdin);

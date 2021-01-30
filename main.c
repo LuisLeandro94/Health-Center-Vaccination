@@ -74,7 +74,7 @@ void utentesPorVacina(ListaUtentes lu, ListaVacinas lv)
 {
     int numVacina;
     listarVacinasGeral(lv);
-    printf("Escolha a sua opção: ");
+    printf("Escolha a sua opcao: ");
     scanf("%d", &numVacina);
     for (int i = 0; i < lu.numeroUtentes; i++)
     {
@@ -89,7 +89,7 @@ void utentesPorCentro(ListaUtentes lu, ListaCentros lc)
 {
     int numCentro;
     listarCentrosGeral(lc);
-    printf("Escolha a sua opçao: ");
+    printf("Escolha a sua opcao: ");
     scanf("%d", &numCentro);
     for (int i = 0; i < lu.numeroUtentes; i++)
     {
@@ -107,7 +107,7 @@ void seacrhUtente(ListaUtentes lu)
     listarUtentes(lu);
     printf("Insira um utente: ");
     scanf("%d", &numUtente);
-    printf("%s -> %d/%d/%d\n", lu.utentes[numUtente - 1].nomeUtente, lu.utentes[numUtente - 1].dayUltimaDose, lu.utentes[numUtente - 1].monthUltimaDose, lu.utentes[numUtente -1].yearUltimaDose);
+    printf("%s -> %d/%d/%d\n", lu.utentes[numUtente - 1].nomeUtente, lu.utentes[numUtente - 1].dayUltimaDose, lu.utentes[numUtente - 1].monthUltimaDose, lu.utentes[numUtente - 1].yearUltimaDose);
 }
 
 void seacrhUtenteDate(ListaUtentes lu)
