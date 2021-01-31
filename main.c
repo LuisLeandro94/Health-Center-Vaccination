@@ -21,6 +21,10 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
     }
     if (a == 0)
     {
+        printf("Introduza o centro:\n");
+        u.centroID = listarCentros(lc);
+        printf("Introduza a vacina:\n");
+        u.vacinaID = listarVacinas(lv);
         for (int i = 0; i < lv.numeroVacinas; i++)
         {
             if (lv.listaVacinas[i].vacinaID == u.vacinaID)
@@ -29,10 +33,6 @@ void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
                 gravarDadosListaVacinas(lv);
             }
         }
-        printf("Introduza o centro:\n");
-        u.centroID = listarCentros(lc);
-        printf("Introduza a vacina:\n");
-        u.vacinaID = listarVacinas(lv);
         for (int i = 0; i < lv.numeroVacinas; i++)
         {
             if (lv.listaVacinas[i].vacinaID == u.vacinaID)
@@ -176,24 +176,24 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
     printf("#########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    system("cls");
+    system("@cls||clear");
 
     switch (opcao)
     {
     case 1:
         menuUtente(lu, *lc, *lv);
         gravarDadosListaUtentes(*lu);
-        system("cls");
+        system("@cls||clear");
         break;
     case 2:
         editaUtente(lu, numUtente);
         gravarDadosListaUtentes(*lu);
-        system("cls");
+        system("@cls||clear");
         break;
     case 3:
         removerUtente(lu, numUtente);
         gravarDadosListaUtentes(*lu);
-        system("cls");
+        system("@cls||clear");
         break;
     case 4:
         listarUtentes(*lu);
@@ -221,6 +221,22 @@ void menuUtentes(ListaUtentes *lu, ListaVacinas *lv, ListaCentros *lc)
 void menuInicial(ListaCentros *lc, ListaUtentes *lu, ListaVacinas *lv)
 {
     int opcao;
+    float media = mediaIdades(*lu);
+    printf("#########################################\n");
+    printf("#                                       #\n");
+    printf("#               DASHBOARD               #\n");
+    printf("#                                       #\n");
+    printf("#########################################\n");
+    printf("\n");
+    printf("Quantidade vacinas administradas: %d\n", lv->numeroVacinas);
+    printf("Media de idades dos utentes vacinados: %.2f\n", media);
+    printf("Quantidade de utentes vacinados por vacina:\n");
+    for (int i = 0; i < lv->numeroVacinas; i++)
+    {
+        printf("%s -> %d\n", lv->listaVacinas[i].designacaoVacina, lv->listaVacinas[i].numUtentes);
+    }
+    printf("\n");
+    printf("\n");
 
     printf("########################################\n");
     printf("#                                      #\n");
@@ -239,7 +255,7 @@ void menuInicial(ListaCentros *lc, ListaUtentes *lu, ListaVacinas *lv)
     printf("########################################\n");
     printf(">\t Digite a sua opcao -> ");
     scanf("%d", &opcao);
-    system("cls");
+    system("@cls||clear");
 
     switch (opcao)
     {
@@ -263,6 +279,7 @@ void menuInicial(ListaCentros *lc, ListaUtentes *lu, ListaVacinas *lv)
 
 int main(int argc, char const *argv[])
 {
+    system("@cls||clear");
     //Definicao de SNS
 
     ListaCentros lc;
@@ -275,29 +292,12 @@ int main(int argc, char const *argv[])
 
     carregarDadosListaCentros(&lc);
     carregarDadosListaUtentes(&lu);
-    carregarDadosListaVacinas(&lv);
     int opcao = -1;
     int temp = 0;
 
-    float media = mediaIdades(lu);
-    printf("#########################################\n");
-    printf("#                                       #\n");
-    printf("#               DASHBOARD               #\n");
-    printf("#                                       #\n");
-    printf("#########################################\n");
-    printf("\n");
-    printf("Quantidade vacinas administradas: %d\n", lv.numeroVacinas);
-    printf("Media de idades dos utentes vacinados: %.2f\n", media);
-    printf("Quantidade de utentes vacinados por vacina:\n");
-    for (int i = 0; i < lv.numeroVacinas; i++)
-    {
-        printf("%s -> %d\n", lv.listaVacinas[i].designacaoVacina, lv.listaVacinas[i].numUtentes);
-    }
-    printf("\n");
-    printf("\n");
-
     while (opcao != 0)
     {
+        carregarDadosListaVacinas(&lv);
         menuInicial(&lc, &lu, &lv);
     }
 }

@@ -143,7 +143,7 @@ void editaCentro(ListaCentros *lc, int numCentro)
     {
         if (status1 == 0)
         {
-            printf("Insira novamente o numero :");
+            printf("Escolha o centro a editar -> ");
             while (getchar() != '\n')
                 ;
         }
@@ -152,8 +152,8 @@ void editaCentro(ListaCentros *lc, int numCentro)
             break;
         }
     }
-    system("cls");
-    printf("Escolheu o centro: %s\n", lc->listaCentros[numCentro + 1].nomeCentro);
+    system("@cls||clear");
+    printf("Escolheu o centro: %s\n", lc->listaCentros[numCentro - 1].nomeCentro);
     printf("O que deseja alterar?\n");
     printf("1 -> Codigo do Centro\n");
     printf("2 -> Nome do Centro\n");
@@ -176,7 +176,7 @@ void editaCentro(ListaCentros *lc, int numCentro)
     switch (opcao)
     {
     case 1:
-        printf("Codigo original: %d\n", lc->listaCentros[numCentro].codigoCentro);
+        printf("Codigo original: %d\n", lc->listaCentros[numCentro - 1].codigoCentro);
         printf("Novo codigo: \n");
         while (getchar() != '\n')
             ;
@@ -184,28 +184,28 @@ void editaCentro(ListaCentros *lc, int numCentro)
         {
             fgets(temp, sizeof(temp), stdin);
         } while (temp[0] == '\n' && temp[1] == '\0');
-        sscanf(temp, "%d", &lc->listaCentros[numCentro].codigoCentro);
+        sscanf(temp, "%d", &lc->listaCentros[numCentro - 1].codigoCentro);
         break;
 
     case 2:
-        printf("Nome original: %s\n", lc->listaCentros[numCentro].nomeCentro);
+        printf("Nome original: %s\n", lc->listaCentros[numCentro - 1].nomeCentro);
         printf("Novo nome: \n");
         while (getchar() != '\n')
             ;
         do
         {
-            fgets(lc->listaCentros[numCentro].nomeCentro, NOME, stdin);
-        } while (lc->listaCentros[numCentro].nomeCentro[0] == '\n' && lc->listaCentros[numCentro].nomeCentro[1] == '\0');
+            fgets(lc->listaCentros[numCentro - 1].nomeCentro, NOME, stdin);
+        } while (lc->listaCentros[numCentro - 1].nomeCentro[0] == '\n' && lc->listaCentros[numCentro - 1].nomeCentro[1] == '\0');
         break;
     case 3:
-        printf("Morada original: %s\n", lc->listaCentros[numCentro].morada);
+        printf("Morada original: %s\n", lc->listaCentros[numCentro - 1].morada);
         printf("Nova morada: \n");
         while (getchar() != '\n')
             ;
         do
         {
-            fgets(lc->listaCentros[numCentro].morada, MORADA, stdin);
-        } while (lc->listaCentros[numCentro].morada[0] == '\n' && lc->listaCentros[numCentro].morada[1] == '\0');
+            fgets(lc->listaCentros[numCentro - 1].morada, MORADA, stdin);
+        } while (lc->listaCentros[numCentro - 1].morada[0] == '\n' && lc->listaCentros[numCentro - 1].morada[1] == '\0');
     case 0:
         break;
     default:
@@ -253,25 +253,25 @@ void menuCentro(ListaCentros *lc)
             break;
         }
     }
-    system("cls");
+    system("@cls||clear");
 
     switch (opcao)
     {
     case 1:
         adicionarCentro(lc);
         gravarDadosListaCentros(*lc);
-        system("cls");
+        system("@cls||clear");
         break;
     case 2:
 
         editaCentro(lc, numCentro);
         gravarDadosListaCentros(*lc);
-        system("cls");
+        system("@cls||clear");
         break;
     case 3:
         inativarCentro(lc, numCentro);
         gravarDadosListaCentros(*lc);
-        system("cls");
+        system("@cls||clear");
         break;
     case 4:
         ativarCentro(lc, numCentro);

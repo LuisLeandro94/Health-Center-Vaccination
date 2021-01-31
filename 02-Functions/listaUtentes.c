@@ -44,12 +44,25 @@ void editaUtente(ListaUtentes *lu, int numUtente)
 {
     int opcao;
     char temp[20];
+    int status;
 
     listarUtentes(*lu);
     printf("Escolha o utente a editar: \n");
-    scanf("%d", &numUtente);
-    system("cls");
-    printf("Escolheu o utente: %s\n", lu->utentes[numUtente + 1].nomeUtente);
+    while ((status = scanf("%d", &numUtente)) != EOF)
+    {
+        if (status == 0)
+        {
+            printf(">\t Escolha o utente a editar -> ");
+            while (getchar() != '\n')
+                ;
+        }
+        else
+        {
+            break;
+        }
+    }
+    system("@cls||clear");
+    printf("Escolheu o utente: %s\n", lu->utentes[numUtente - 1].nomeUtente);
     printf("O que deseja alterar?\n");
     printf("1 -> Numero de Utente\n");
     printf("2 -> Nome do Utente\n");
@@ -57,7 +70,6 @@ void editaUtente(ListaUtentes *lu, int numUtente)
     printf("4 -> Contacto do Utente\n");
     printf("0 -> Sair\n");
     printf("> Introduza a sua opcao: ");
-    int status;
     while ((status = scanf("%d", &opcao)) != EOF)
     {
         if (status == 0)
@@ -74,7 +86,7 @@ void editaUtente(ListaUtentes *lu, int numUtente)
     switch (opcao)
     {
     case 1:
-        printf("Numero de utente original: %d\n", lu->utentes[numUtente].numeroUtente);
+        printf("Numero de utente original: %d\n", lu->utentes[numUtente - 1].numeroUtente);
         printf("Novo numero de utente: \n");
         while (getchar() != '\n')
             ;
@@ -82,20 +94,20 @@ void editaUtente(ListaUtentes *lu, int numUtente)
         {
             fgets(temp, sizeof(temp), stdin);
         } while (temp[0] == '\n' && temp[1] == '\0');
-        sscanf(temp, "%d", &lu->utentes[numUtente].numeroUtente);
+        sscanf(temp, "%d", &lu->utentes[numUtente - 1].numeroUtente);
         break;
     case 2:
-        printf("Nome de utente original: %s\n", lu->utentes[numUtente].nomeUtente);
+        printf("Nome de utente original: %s\n", lu->utentes[numUtente - 1].nomeUtente);
         printf("Novo nome de utente: \n");
         while (getchar() != '\n')
             ;
         do
         {
-            fgets(lu->utentes[numUtente].nomeUtente, NOME, stdin);
-        } while (lu->utentes[numUtente].nomeUtente[0] == '\n' && lu->utentes[numUtente].nomeUtente[1] == '\0');
+            fgets(lu->utentes[numUtente - 1].nomeUtente, NOME, stdin);
+        } while (lu->utentes[numUtente - 1].nomeUtente[0] == '\n' && lu->utentes[numUtente - 1].nomeUtente[1] == '\0');
         break;
     case 3:
-        printf("Idade original: %d\n", lu->utentes[numUtente].idade);
+        printf("Idade original: %d\n", lu->utentes[numUtente - 1].idade);
         printf("Nova idade: \n");
         while (getchar() != '\n')
             ;
@@ -103,17 +115,17 @@ void editaUtente(ListaUtentes *lu, int numUtente)
         {
             fgets(temp, sizeof(temp), stdin);
         } while (temp[0] == '\n' && temp[1] == '\0');
-        sscanf(temp, "%d", &lu->utentes[numUtente].idade);
+        sscanf(temp, "%d", &lu->utentes[numUtente - 1].idade);
         break;
     case 4:
-        printf("Contacto original: %s\n", lu->utentes[numUtente].contacto);
+        printf("Contacto original: %s\n", lu->utentes[numUtente - 1].contacto);
         printf("Novo contacto: \n");
         while (getchar() != '\n')
             ;
         do
         {
-            fgets(lu->utentes[numUtente].contacto, CONTACTO, stdin);
-        } while (lu->utentes[numUtente].contacto[0] == '\n' && lu->utentes[numUtente].contacto[1] == '\0' && strlen(lu->utentes[numUtente].contacto) != 10);
+            fgets(lu->utentes[numUtente - 1].contacto, CONTACTO, stdin);
+        } while (strlen(lu->utentes[numUtente - 1].contacto) != 10);
         break;
     case 0:
         break;

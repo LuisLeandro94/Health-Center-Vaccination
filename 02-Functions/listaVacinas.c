@@ -194,12 +194,26 @@ void editaVacina(ListaVacinas *lv, int numVacina)
 {
     int opcao;
     char temp[20];
+    int status;
 
     listarVacinasGeral(*lv);
     printf("Escolha a vacina a editar: \n");
     scanf("%d", &numVacina);
-    system("cls");
-    printf("Escolheu a vacina: %s\n", lv->listaVacinas[numVacina].designacaoVacina);
+    while ((status = scanf("%d", &numVacina)) != EOF)
+    {
+        if (status == 0)
+        {
+            printf(">\t Escolha a vacina a editar -> ");
+            while (getchar() != '\n')
+                ;
+        }
+        else
+        {
+            break;
+        }
+    }
+    system("@cls||clear");
+    printf("Escolheu a vacina: %s\n", lv->listaVacinas[numVacina - 1].designacaoVacina);
     printf("O que deseja alterar?\n");
     printf("1 -> Nome da vacina \n");
     printf("2 -> Codigo da vacina\n");
@@ -207,32 +221,44 @@ void editaVacina(ListaVacinas *lv, int numVacina)
     printf("4 -> Espera entre doses \n");
     printf("0 -> Sair \n");
     printf("> Introduza a sua opcao: ");
-    scanf("%d", &opcao);
+    while ((status = scanf("%d", &opcao)) != EOF)
+    {
+        if (status == 0)
+        {
+            printf(">\t Introduza a sua opcao -> ");
+            while (getchar() != '\n')
+                ;
+        }
+        else
+        {
+            break;
+        }
+    }
     switch (opcao)
     {
     case 1:
-        printf("Nome original: %s\n", lv->listaVacinas[numVacina].designacaoVacina);
+        printf("Nome original: %s\n", lv->listaVacinas[numVacina - 1].designacaoVacina);
         printf("Novo nome: \n");
         while (getchar() != '\n')
             ;
         do
         {
-            fgets(lv->listaVacinas[numVacina].designacaoVacina, DESIGNACAO, stdin);
-        } while (lv->listaVacinas[numVacina].designacaoVacina[0] == '\n' && lv->listaVacinas[numVacina].designacaoVacina[1] == '\0');
+            fgets(lv->listaVacinas[numVacina - 1].designacaoVacina, DESIGNACAO, stdin);
+        } while (lv->listaVacinas[numVacina - 1].designacaoVacina[0] == '\n' && lv->listaVacinas[numVacina - 1].designacaoVacina[1] == '\0');
         break;
     case 2:
-        printf("Codigo original: %d\n", lv->listaVacinas[numVacina].codigoVacina);
+        printf("Codigo original: %d\n", lv->listaVacinas[numVacina - 1].codigoVacina);
         printf("Novo codigo: \n");
         while (getchar() != '\n')
             ;
         do
         {
             fgets(temp, sizeof(temp), stdin);
-        } while (temp[0] == '\n' && temp[1] == '\0' );
-        sscanf(temp, "%d", &lv->listaVacinas[numVacina].codigoVacina);
+        } while (temp[0] == '\n' && temp[1] == '\0');
+        sscanf(temp, "%d", &lv->listaVacinas[numVacina - 1].codigoVacina);
         break;
     case 3:
-        printf("Numero de doses original: %d\n", lv->listaVacinas[numVacina].numDoses);
+        printf("Numero de doses original: %d\n", lv->listaVacinas[numVacina - 1].numDoses);
         printf("Novo numero de doses: \n");
         while (getchar() != '\n')
             ;
@@ -240,10 +266,10 @@ void editaVacina(ListaVacinas *lv, int numVacina)
         {
             fgets(temp, sizeof(temp), stdin);
         } while (temp[0] == '\n' && temp[1] == '\0');
-        sscanf(temp, "%d", &lv->listaVacinas[numVacina].numDoses);
+        sscanf(temp, "%d", &lv->listaVacinas[numVacina - 1].numDoses);
         break;
     case 4:
-        printf("Espera entre doses original: %d\n", lv->listaVacinas[numVacina].mesesEntreDoses);
+        printf("Espera entre doses original: %d\n", lv->listaVacinas[numVacina - 1].mesesEntreDoses);
         printf("Nova espera entre doses: \n");
         while (getchar() != '\n')
             ;
@@ -251,7 +277,7 @@ void editaVacina(ListaVacinas *lv, int numVacina)
         {
             fgets(temp, sizeof(temp), stdin);
         } while (temp[0] == '\n' && temp[1] == '\0');
-        sscanf(temp, "%d", &lv->listaVacinas[numVacina].mesesEntreDoses);
+        sscanf(temp, "%d", &lv->listaVacinas[numVacina - 1].mesesEntreDoses);
         break;
     case 0:
         break;
@@ -302,24 +328,24 @@ void menuVacina(ListaVacinas *lv)
             break;
         }
     }
-    system("cls");
+    system("@cls||clear");
 
     switch (opcao)
     {
     case 1:
         adicionarVacina(lv);
         gravarDadosListaVacinas(*lv);
-        system("cls");
+        system("@cls||clear");
         break;
     case 2:
         editaVacina(lv, numVacina);
         gravarDadosListaVacinas(*lv);
-        system("cls");
+        system("@cls||clear");
         break;
     case 3:
         inativarVacina(lv, numVacina);
         gravarDadosListaVacinas(*lv);
-        system("cls");
+        system("@cls||clear");
         break;
     case 4:
         ativarVacina(lv, numVacina);

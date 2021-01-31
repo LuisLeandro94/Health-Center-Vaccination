@@ -33,7 +33,7 @@ Vacina criarVacina(int vacinaID)
     } while (temp[0] == '\n' && temp[1] == '\0');
     sscanf(temp, "%d", &v.mesesEntreDoses);
     v.activo = 1;
-
+    v.numUtentes = 0;
     v.vacinaID = vacinaID;
 
     return v;
