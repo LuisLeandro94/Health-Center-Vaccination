@@ -48,7 +48,7 @@ void editaUtente(ListaUtentes *lu, int numUtente)
     printf("Escolha o utente a editar: \n");
     scanf("%d", &numUtente);
     system("cls");
-    printf("Escolheu o utente: %s\n", lu->utentes[numUtente].nomeUtente);
+    printf("Escolheu o utente: %s\n", lu->utentes[numUtente + 1].nomeUtente);
     printf("O que deseja alterar?\n");
     printf("1 -> Numero de Utente\n");
     printf("2 -> Nome do Utente\n");
@@ -100,7 +100,7 @@ void editaUtente(ListaUtentes *lu, int numUtente)
 float mediaIdades(ListaUtentes lu)
 {
     int temp = 0;
-    if(lu.numeroUtentes != 0)
+    if (lu.numeroUtentes != 0)
     {
         for (int i = 0; i < lu.numeroUtentes; i++)
         {

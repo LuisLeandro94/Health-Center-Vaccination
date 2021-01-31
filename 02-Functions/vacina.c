@@ -9,8 +9,6 @@ Vacina criarVacina(int vacinaID)
     char temp[20];
 
     printf("Nome : ");
-    while (getchar() != '\0')
-        ;
     do
     {
         fgets(v.designacaoVacina, DESIGNACAO, stdin);

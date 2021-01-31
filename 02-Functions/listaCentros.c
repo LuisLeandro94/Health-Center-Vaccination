@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../01-Data/listaCentros.h"
 
 int listarCentros(ListaCentros lc)
@@ -35,9 +36,21 @@ void listarCentrosGeral(ListaCentros lc)
 
 void adicionarCentro(ListaCentros *lc)
 {
+    int a = 0;
     CentroVacinacao c = criarCentro(lc->numeroCentros);
-    lc->listaCentros[lc->numeroCentros] = c;
-    lc->numeroCentros++;
+    for (int i = 0; i < lc->numeroCentros; i++)
+    {
+        if (strcmp(lc->listaCentros[i].nomeCentro, c.nomeCentro) == 0)
+        {
+            printf("Centro ja existente!\n");
+            a = 1;
+        }
+    }
+    if (a == 0)
+    {
+        lc->listaCentros[lc->numeroCentros] = c;
+        lc->numeroCentros++;
+    }
 }
 
 void carregarDadosListaCentros(ListaCentros *lc)
@@ -130,7 +143,7 @@ void editaCentro(ListaCentros *lc, int numCentro)
     {
         if (status1 == 0)
         {
-            printf("Insira novamente o numero 1:");
+            printf("Insira novamente o numero :");
             while (getchar() != '\n')
                 ;
         }
@@ -140,7 +153,7 @@ void editaCentro(ListaCentros *lc, int numCentro)
         }
     }
     system("cls");
-    printf("Escolheu o centro: %s\n", lc->listaCentros[numCentro].nomeCentro);
+    printf("Escolheu o centro: %s\n", lc->listaCentros[numCentro + 1].nomeCentro);
     printf("O que deseja alterar?\n");
     printf("1 -> Codigo do Centro\n");
     printf("2 -> Nome do Centro\n");
@@ -165,18 +178,20 @@ void editaCentro(ListaCentros *lc, int numCentro)
     case 1:
         printf("Codigo original: %d\n", lc->listaCentros[numCentro].codigoCentro);
         printf("Novo codigo: \n");
-        while (getchar() != '\n');
+        while (getchar() != '\n')
+            ;
         do
         {
-             fgets(temp, sizeof(temp), stdin);
+            fgets(temp, sizeof(temp), stdin);
         } while (temp[0] == '\n' && temp[1] == '\0');
-          sscanf(temp, "%d", &lc->listaCentros[numCentro].codigoCentro);
+        sscanf(temp, "%d", &lc->listaCentros[numCentro].codigoCentro);
         break;
 
     case 2:
         printf("Nome original: %s\n", lc->listaCentros[numCentro].nomeCentro);
         printf("Novo nome: \n");
-        while (getchar() != '\n');     
+        while (getchar() != '\n')
+            ;
         do
         {
             fgets(lc->listaCentros[numCentro].nomeCentro, NOME, stdin);
@@ -185,7 +200,8 @@ void editaCentro(ListaCentros *lc, int numCentro)
     case 3:
         printf("Morada original: %s\n", lc->listaCentros[numCentro].morada);
         printf("Nova morada: \n");
-        while (getchar() != '\n');
+        while (getchar() != '\n')
+            ;
         do
         {
             fgets(lc->listaCentros[numCentro].morada, MORADA, stdin);

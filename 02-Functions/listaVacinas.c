@@ -55,8 +55,20 @@ void listarVacinasAlfabeticamente(ListaVacinas lv)
 }
 void adicionarVacina(ListaVacinas *lv)
 {
+    int a = 0;
     Vacina v = criarVacina(lv->numeroVacinas);
-    lv->listaVacinas[lv->numeroVacinas++] = v;
+    for (int i = 0; i < lv->numeroVacinas; i++)
+    {
+        if (strcmp(lv->listaVacinas[i].designacaoVacina, v.designacaoVacina) == 0)
+        {
+            printf("Vacina ja existente!\n");
+            a = 1;
+        }
+    }
+    if (a == 0)
+    {
+        lv->listaVacinas[lv->numeroVacinas++] = v;
+    }
 }
 
 void carregarDadosListaVacinas(ListaVacinas *lv)
@@ -198,7 +210,8 @@ void editaVacina(ListaVacinas *lv, int numVacina)
     case 2:
         printf("Codigo original: %d\n", lv->listaVacinas[numVacina].codigoVacina);
         printf("Novo codigo: \n");
-        while (getchar() != '\n');
+        while (getchar() != '\n')
+            ;
         do
         {
             fgets(temp, sizeof(temp), stdin);
@@ -208,7 +221,8 @@ void editaVacina(ListaVacinas *lv, int numVacina)
     case 3:
         printf("Numero de doses original: %d\n", lv->listaVacinas[numVacina].numDoses);
         printf("Novo numero de doses: \n");
-        while (getchar() != '\n');
+        while (getchar() != '\n')
+            ;
         do
         {
             fgets(temp, sizeof(temp), stdin);
@@ -218,7 +232,8 @@ void editaVacina(ListaVacinas *lv, int numVacina)
     case 4:
         printf("Espera entre doses original: %d\n", lv->listaVacinas[numVacina].mesesEntreDoses);
         printf("Nova espera entre doses: \n");
-        while (getchar() != '\n');
+        while (getchar() != '\n')
+            ;
         do
         {
             fgets(temp, sizeof(temp), stdin);

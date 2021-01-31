@@ -16,13 +16,16 @@ Utente criarUtente(int utenteID)
     } while (u.nomeUtente[0] == '\n' && u.nomeUtente[1] == '\0');
     u.nomeUtente[strlen(u.nomeUtente) - 1] = '\0';
     printf("Numero do Utente: ");
-
-    printf("Idade do Utente: ");
-    fgets(temp, sizeof(temp), stdin);
     do
     {
         fgets(temp, sizeof(temp), stdin);
-    } while (!(u.numeroUtente >= 0));
+    } while (temp[0] == '\n' && temp[1] == '\0');
+    sscanf(temp, "%d", &u.numeroUtente);
+    printf("Idade do Utente: ");
+    do
+    {
+        fgets(temp, sizeof(temp), stdin);
+    } while (temp[0] == '\n' && temp[1] == '\0');
     sscanf(temp, "%d", &u.idade);
     printf("Contacto do Utente: ");
     do

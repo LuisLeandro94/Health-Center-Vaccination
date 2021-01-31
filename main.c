@@ -9,39 +9,51 @@
 void menuUtente(ListaUtentes *lu, ListaCentros lc, ListaVacinas lv)
 {
     char dateAux[10];
+    int a = 0;
     Utente u = criarUtente(lu->utentes[lu->numeroUtentes - 1].utenteID + 1);
-    for (int i = 0; i < lv.numeroVacinas; i++)
+    for (int i = 0; i < lu->numeroUtentes; i++)
     {
-        if (lv.listaVacinas[i].vacinaID == u.vacinaID)
+        if (lu->utentes[i].numeroUtente == u.numeroUtente)
         {
-            lv.listaVacinas[i].numUtentes++;
-            gravarDadosListaVacinas(lv);
+            printf("Numero de utente ja existente!\n");
+            a = 1;
         }
     }
-    printf("Introduza o centro:\n");
-    u.centroID = listarCentros(lc);
-    printf("Introduza a vacina:\n");
-    u.vacinaID = listarVacinas(lv);
-    for (int i = 0; i < lv.numeroVacinas; i++)
+    if (a == 0)
     {
-        if (lv.listaVacinas[i].vacinaID == u.vacinaID)
+        for (int i = 0; i < lv.numeroVacinas; i++)
         {
-            time_t t = time(NULL);
-            struct tm tm = *localtime(&t);
-            int month = (tm.tm_mon + 1) + lv.listaVacinas[i].mesesEntreDoses;
-            int year = tm.tm_year + 1900;
-            if (month >= 12)
+            if (lv.listaVacinas[i].vacinaID == u.vacinaID)
             {
-                int month_ = (12 - month) * -1;
-                month = month_;
-                year = year + 1;
+                lv.listaVacinas[i].numUtentes++;
+                gravarDadosListaVacinas(lv);
             }
-            u.dayUltimaDose = tm.tm_mday;
-            u.monthUltimaDose = month;
-            u.yearUltimaDose = year;
         }
+        printf("Introduza o centro:\n");
+        u.centroID = listarCentros(lc);
+        printf("Introduza a vacina:\n");
+        u.vacinaID = listarVacinas(lv);
+        for (int i = 0; i < lv.numeroVacinas; i++)
+        {
+            if (lv.listaVacinas[i].vacinaID == u.vacinaID)
+            {
+                time_t t = time(NULL);
+                struct tm tm = *localtime(&t);
+                int month = (tm.tm_mon + 1) + lv.listaVacinas[i].mesesEntreDoses;
+                int year = tm.tm_year + 1900;
+                if (month >= 12)
+                {
+                    int month_ = (12 - month) * -1;
+                    month = month_;
+                    year = year + 1;
+                }
+                u.dayUltimaDose = tm.tm_mday;
+                u.monthUltimaDose = month;
+                u.yearUltimaDose = year;
+            }
+        }
+        acrescentaUtente(lu, u);
     }
-    acrescentaUtente(lu, u);
 }
 
 void removerUtente(ListaUtentes *lu, int numUtente)
