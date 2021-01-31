@@ -13,7 +13,20 @@ int listarVacinas(ListaVacinas lv)
             printf("%d -> %s \n", lv.listaVacinas[i].vacinaID, lv.listaVacinas[i].designacaoVacina);
         }
     }
-    scanf("%d", &vacinaId);
+    int status;
+    while ((status = scanf("%d", &vacinaId)) != EOF)
+    {
+        if (status == 0)
+        {
+            printf("Escolha a vacina: ");
+            while (getchar() != '\n')
+                ;
+        }
+        else
+        {
+            break;
+        }
+    }
 
     if (vacinaId >= lv.numeroVacinas + 1)
     {
