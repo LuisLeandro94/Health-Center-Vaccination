@@ -10,18 +10,27 @@ CentroVacinacao criarCentro(int centroID)
     int status;
 
     printf("Nome do Centro: ");
+    while (getchar() != '\n');
+    do
+    {    
+    fgets(c.nomeCentro, NOME, stdin);
+    } while (c.nomeCentro[0] == '\n' && c.nomeCentro[1] == '\0');
+    c.nomeCentro[strlen(c.nomeCentro) - 1] = '\0';
+
+    printf("Codigo do Centro: ");
     do
     {
-        while (getchar() != '\n')
-        ;
-        fgets(c.nomeCentro, NOME, stdin);
-    } while (!((c.nomeCentro[0] >= 'a' && c.nomeCentro[0] <= 'z')||(c.nomeCentro[0] >= 'A' && c.nomeCentro[0] <= 'Z')||(c.nomeCentro[0] == ' ')));
-    c.nomeCentro[strlen(c.nomeCentro) - 1] = '\0';
-    printf("Codigo do Centro: ");
-    fgets(temp, sizeof(temp), stdin);
-    sscanf(temp, "%d", &c.codigoCentro);
+        fgets(temp, sizeof(temp), stdin);
+        sscanf(temp, "%d", &c.codigoCentro);
+    } while (temp[0] == '\n' && temp[1] == '\0');
+
     printf("Morada do Centro: ");
-    fgets(c.morada, MORADA, stdin);
+    do
+    {
+        fgets(c.morada, MORADA, stdin);
+    } while (c.morada[0] == '\n' && c.morada[1] == '\0');
+    c.morada[strlen(c.morada) - 1] = '\0';
+
     c.activo = 1;
     c.centroID = centroID;
 

@@ -22,7 +22,10 @@ void carregarDadosListaUtentes(ListaUtentes *lu)
     file = fopen("listaUtentes.dat", "rb");
 
     if (file == NULL)
+    {
+        printf("File not found!\n");
         return;
+    }
 
     fread(lu, sizeof(ListaUtentes), 1, file);
 

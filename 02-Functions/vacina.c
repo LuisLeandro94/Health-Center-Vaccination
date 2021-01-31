@@ -9,18 +9,30 @@ Vacina criarVacina(int vacinaID)
     char temp[20];
 
     printf("Nome : ");
-    while (getchar() != '\n')
+    while (getchar() != '\0')
         ;
-    fgets(v.designacaoVacina, DESIGNACAO, stdin);
+    do
+    {
+        fgets(v.designacaoVacina, DESIGNACAO, stdin);
+    } while (v.designacaoVacina[0] == '\n' && v.designacaoVacina[1] == '\0');
     v.designacaoVacina[strlen(v.designacaoVacina) - 1] = '\0';
     printf("Codigo : ");
-    fgets(temp, sizeof(temp), stdin);
+    do
+    {
+        fgets(temp, sizeof(temp), stdin);
+    } while (temp[0] == '\n' && temp[1] == '\0');
     sscanf(temp, "%d", &v.codigoVacina);
     printf("Numero de Doses a tomar por paciente: ");
-    fgets(temp, sizeof(temp), stdin);
+    do
+    {
+        fgets(temp, sizeof(temp), stdin);
+    } while (temp[0] == '\n' && temp[1] == '\0');
     sscanf(temp, "%d", &v.numDoses);
     printf("Meses entre doses: ");
-    fgets(temp, sizeof(temp), stdin);
+    do
+    {
+        fgets(temp, sizeof(temp), stdin);
+    } while (temp[0] == '\n' && temp[1] == '\0');
     sscanf(temp, "%d", &v.mesesEntreDoses);
     v.activo = 1;
 
