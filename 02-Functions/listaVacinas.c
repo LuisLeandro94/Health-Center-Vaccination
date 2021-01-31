@@ -215,7 +215,7 @@ void editaVacina(ListaVacinas *lv, int numVacina)
         do
         {
             fgets(temp, sizeof(temp), stdin);
-        } while (temp[0] == '\n' && temp[1] == '\0');
+        } while (temp[0] == '\n' && temp[1] == '\0' );
         sscanf(temp, "%d", &lv->listaVacinas[numVacina].codigoVacina);
         break;
     case 3:
